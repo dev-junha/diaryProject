@@ -24,4 +24,9 @@ public class DiaryService {
         return diaryRepository.findAll();
     }
 
+    //일기 상세 조회 메서드
+    public Diary findById(long id){
+        return diaryRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException( "id값 "+id +"을 찾을 수 없습니다"));
+    }
 }

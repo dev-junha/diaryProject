@@ -41,5 +41,16 @@ public class DiaryController {
                 .body(diaries);
     }
 
+    @GetMapping("/api/diaries/{id}")
+    public ResponseEntity<?> findDiary(@PathVariable long id){
+        try {
+            Diary diary = diaryService.findById(id);
+            return ResponseEntity.ok()
+                    .body(new DiaryResponse(diary));
+        }catch(IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("해당 아이디값의 일기를 찾을 수 없습니다 ");
+        }
+    }
 
 }
