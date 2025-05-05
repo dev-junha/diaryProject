@@ -3,13 +3,15 @@ package univ_team1.dairyProject.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 import univ_team1.dairyProject.domain.Diary;
 import univ_team1.dairyProject.dto.AddDiaryRequest;
+import univ_team1.dairyProject.dto.DiaryResponse;
 import univ_team1.dairyProject.service.DiaryService;
+
+import java.util.List;
+
+import static java.util.Arrays.stream;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,6 +29,16 @@ public class DiaryController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("유효하지 않은 감정(emotion) 또는 날씨(weather) 값입니다");
         }
+    }
+
+    @GetMapping("/api/diaries")
+    public ResponseEntity<List<DiaryResponse>> findAllDiaries(){
+        List<DiaryResponse> diaries = diaryService.findAll()
+                .stream()
+                .map(DiaryResponse::new)
+                .toList();
+        return ResponseEntity.ok()
+                .body(diaries);
     }
 
 

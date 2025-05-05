@@ -35,9 +35,12 @@ public class Diary {
     @Column(nullable = false)
     private Weather weather;
 
+    /*@Column
+    private boolean isFavorite;*/
+
     @CreatedDate
-    @Column(updatable = false)
-    private LocalDate createdDate;
+    @Column(name = "created_at", updatable = false)
+    private LocalDate createdAt;
 
     @Builder
     public Diary(String title,

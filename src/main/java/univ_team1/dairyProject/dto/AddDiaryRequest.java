@@ -19,7 +19,7 @@ public class AddDiaryRequest {
     private String content;
     private String emotion;
     private String weather;
-    private LocalDate createdDate;
+    private LocalDate createdAt;
 
     public Diary toEntity(){
         return Diary.builder()
