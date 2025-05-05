@@ -53,4 +53,11 @@ public class DiaryController {
         }
     }
 
+    @DeleteMapping("/api/diaries/{id}")
+    public ResponseEntity<Void> deleteDiary(@PathVariable long id){
+        diaryService.deleteById(id);
+        return ResponseEntity.ok()
+                .build();
+
+    }
 }

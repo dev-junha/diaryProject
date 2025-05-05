@@ -29,4 +29,9 @@ public class DiaryService {
         return diaryRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException( "id값 "+id +"을 찾을 수 없습니다"));
     }
+
+    //일기 삭제 메서드
+    public void deleteById(long id){
+       diaryRepository.deleteById(id);
+    }
 }
